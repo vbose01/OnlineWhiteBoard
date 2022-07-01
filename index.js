@@ -1,6 +1,6 @@
 
 //all variables
-var pdfName = "";
+var pdfName = "Untitled";
 
 var canvas = $("#board")[0]; //jQuery special [0]
 var ctx = canvas.getContext("2d");
