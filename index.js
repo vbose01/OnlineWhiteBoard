@@ -1,6 +1,6 @@
 
 //all variables
-var pdfName = "Untitled";
+var pdfName = "";
 
 var canvas = $("#board")[0]; //jQuery special [0]
 var ctx = canvas.getContext("2d");
@@ -66,7 +66,7 @@ $(".name")[0].addEventListener("change", function(event) {
 $(".download")[0].addEventListener("click", function() {
   var imgData = canvas.toDataURL("image/png");
   var doc = new jsPDF("p", "mm", "A4");
-  doc.addImage(imgData, "PNG", 10, 10);
+  doc.addImage(imgData, "PNG",0, 0);
   doc.save(pdfName + ".pdf");
 });
 
@@ -74,15 +74,15 @@ $(".download")[0].addEventListener("click", function() {
 
 
 //mouse controls
-canvas.addEventListener("mousedown", startDraw);
-canvas.addEventListener("mouseup", stopDraw);
-canvas.addEventListener("mousemove", draw);
+canvas.addEventListener("mousedown", startDraw, false);
+canvas.addEventListener("mouseup", stopDraw, false);
+canvas.addEventListener("mousemove", draw, false);
 
 
 //touch controls
-canvas.addEventListener("touchstart", startDraw);
-canvas.addEventListener("touchend", stopDraw);
-canvas.addEventListener("touchmove", draw);
+canvas.addEventListener("touchstart", startDraw, false);
+canvas.addEventListener("touchend", stopDraw, false);
+canvas.addEventListener("touchmove", draw, false);
 
 
 //change color from input
@@ -93,23 +93,23 @@ $(".palette")[0].addEventListener("change", function(event) {
 
 
 //Brush size
-size = 5;
-$(".brush-size").text(size - 4);
+size = 2;
+$(".brush-size").text(size - 1);
 
 $(".plus")[0].addEventListener("click", function() {
   size++;
   if (size >= 24) {
     size = 24;
   }
-  $(".brush-size").text(size - 4);
+  $(".brush-size").text(size - 1);
 });
 
 $(".minus")[0].addEventListener("click", function() {
   size--;
-  if (size <= 5) {
-    size = 5;
+  if (size <= 2) {
+    size = 2;
   }
-  $(".brush-size").text(size - 4);
+  $(".brush-size").text(size - 1);
 });
 
 
